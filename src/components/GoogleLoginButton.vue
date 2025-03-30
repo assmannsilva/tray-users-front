@@ -1,8 +1,24 @@
 <script setup lang="ts">
-    
+import { googleAuthService } from '@/services/googleAuth.service';
+import { defineEmits } from "vue";
+
+const emit = defineEmits(["auth-url-created"]);
+
+const login = async () => {
+    const response = await googleAuthService.signIn()
+
+    if (!response.success) {
+        console.warn("Erro:", response.error);
+        return;
+    }
+
+    if (response.data?.auth_url) {
+        emit("auth-url-created",response.data.auth_url);
+    }
+}
 </script>
 <template>
-    <button class="gsi-material-button">
+    <button class="gsi-material-button" @click="login">
         <div class="gsi-material-button-state"></div>
         <div class="gsi-material-button-content-wrapper">
             <div class="gsi-material-button-icon">

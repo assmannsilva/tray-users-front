@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import GoogleLoginButton from '../components/GoogleLoginButton.vue';
-</script>
 
+const authUrl = ref<string | null>(null);
+</script>
 <template>
   <div class="layout">
     <header class="header">
@@ -9,7 +11,10 @@ import GoogleLoginButton from '../components/GoogleLoginButton.vue';
     </header>
 
     <div class="main-content">
-      <GoogleLoginButton />
+      <GoogleLoginButton @auth-url-created="authUrl = $event" />
+      <div v-if="authUrl" class="iframe-container">
+        <iframe :src="authUrl" frameborder="0"></iframe>
+      </div>
     </div>
 
     <footer class="footer">
@@ -17,3 +22,17 @@ import GoogleLoginButton from '../components/GoogleLoginButton.vue';
     </footer>
   </div>
 </template>
+
+<style scoped>
+.iframe-container {
+  width: 500px;
+  height: 600px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+}
+</style>
