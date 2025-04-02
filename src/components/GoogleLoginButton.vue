@@ -1,19 +1,20 @@
 <script setup lang="ts">
+import { useToast } from '@/composables/useToast';
 import { googleAuthService } from '@/services/googleAuth.service';
-import { defineEmits } from "vue";
 
-const emit = defineEmits(["auth-url-created"]);
+const { showToast } = useToast();
 
 const login = async () => {
     const response = await googleAuthService.signIn()
 
     if (!response.success) {
         console.warn("Erro:", response.error);
+        showToast("Erro ao iniciar o login com o Google. Tente novamente mais tarde","error");
         return;
     }
 
     if (response.data?.auth_url) {
-        emit("auth-url-created",response.data.auth_url);
+        window.open(response.data.auth_url);
     }
 }
 </script>
