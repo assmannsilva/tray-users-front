@@ -76,11 +76,9 @@ export function useValidation() {
   };
 
   const validateAll = (form: Record<string, string>) => {
-    validateCpf(form.cpf);
-    validateUserName(form.name);
+    return validateCpf(form.cpf) &&
+    validateUserName(form.name) &&
     validateBirthDate(form.birthday);
-    
-    return Object.values(errors).every(error => !error);
   };
 
   return { errors, validateField, validateAll };
