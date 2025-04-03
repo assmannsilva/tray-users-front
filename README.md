@@ -1,39 +1,30 @@
-# tray-users-front
+# Tray Users Front
 
-This template should help get you started developing with Vue 3 in Vite.
+Este repositório contém a interface frontend do projeto Tray Users, desenvolvida com Vue.js.
 
-## Recommended IDE Setup
+## Instalação
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Siga os passos abaixo para configurar e iniciar a aplicação:
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
+### 1. Clone o repositório
 ```sh
-npm install
+git clone https://github.com/assmannsilva/tray-users-front.git
+cd tray-users-front
 ```
 
-### Compile and Hot-Reload for Development
-
+### 2. Configure o ambiente
+Copie o arquivo de exemplo do ambiente:
 ```sh
-npm run dev
+cp .env.example .env
 ```
 
-### Type-Check, Compile and Minify for Production
+Caso necessário, edite o arquivo `.env` para ajustar as configurações conforme seu ambiente.
 
+### 3. Suba os containers Docker
 ```sh
-npm run build
+docker-compose up --build -d
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+---
+Agora sua aplicação frontend está configurada e pronta para uso!
 
-```sh
-npm run test:unit
-```
