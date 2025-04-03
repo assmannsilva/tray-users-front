@@ -5,6 +5,7 @@ import { useValidation } from '@/composables/useUserValidation';
 import { userService } from '@/services/user.service';
 import { reactive } from 'vue';
 import { useRoute } from 'vue-router';
+import router from '@/router';
 
 const { errors, validateField, validateAll } = useValidation();
 
@@ -28,6 +29,8 @@ const submitForm = async () => {
     useToast().showToast("Erro ao completar o cadastro", "error");  
     return;
   }
+
+  router.push({name:  'users.list'})
 };
 </script>
 <template>
